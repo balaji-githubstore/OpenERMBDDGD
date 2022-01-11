@@ -72,69 +72,69 @@ namespace OpenEMRApplication.Hooks
             _helper.AddAttachment("D:\\error.png");
         }
 
-        public static ExtentReports extent;
+        //public static ExtentReports extent;
 
-        private static ExtentTest feature;
-        public static ExtentTest scenario;
-        private static string featureTitle;
+        //private static ExtentTest feature;
+        //public static ExtentTest scenario;
+        //private static string featureTitle;
 
-        //setup the report starts
-        [BeforeTestRun]
-        public static void BeforeTestRun()
-        {
-            string reportPath = @"D:\Report\"; //where to save
-            ExtentSparkReporter report = new ExtentSparkReporter(reportPath);
+        ////setup the report starts
+        //[BeforeTestRun]
+        //public static void BeforeTestRun()
+        //{
+        //    string reportPath = @"D:\Report\"; //where to save
+        //    ExtentSparkReporter report = new ExtentSparkReporter(reportPath);
 
-            extent = new ExtentReports();
-            extent.AttachReporter(report); //accumulate the html while running the scenarios
-        }
+        //    extent = new ExtentReports();
+        //    extent.AttachReporter(report); //accumulate the html while running the scenarios
+        //}
 
-        //generate the report
-        [AfterTestRun]
-        public static void AfterTestRun()
-        {
+        ////generate the report
+        //[AfterTestRun]
+        //public static void AfterTestRun()
+        //{
             
-            extent.Flush(); //generate html with accumulated html
-        }
+        //    extent.Flush(); //generate html with accumulated html
+        //}
 
 
-        //log the feature name and logging the scenario name
-        [BeforeScenario]
-        public void BeforeScenario()
-        {
-            //log the feature name
-            if (featureTitle != featureContext.FeatureInfo.Title)
-            {
-                feature = extent.CreateTest(new GherkinKeyword("Feature"), "Feature: " + featureContext.FeatureInfo.Title);
-            }
-            //log the scenario name 
-            featureTitle = featureContext.FeatureInfo.Title;
-            scenario = feature.CreateNode(new GherkinKeyword("Scenario"), "Scenario: " + scenarioContext.ScenarioInfo.Title);
-        }
+        ////log the feature name and logging the scenario name
+        //[BeforeScenario]
+        //public void BeforeScenario()
+        //{
+        //    //log the feature name
+        //    if (featureTitle != featureContext.FeatureInfo.Title)
+        //    {
+        //        feature = extent.CreateTest(new GherkinKeyword("Feature"), "Feature: " + featureContext.FeatureInfo.Title);
+        //    }
+        //    //log the scenario name 
+        //    featureTitle = featureContext.FeatureInfo.Title;
+        //    scenario = feature.CreateNode(new GherkinKeyword("Scenario"), "Scenario: " + scenarioContext.ScenarioInfo.Title);
+        //}
 
-        [AfterStep]
-        public void AfterStep()
-        {
-            //Console.WriteLine(scenarioContext.StepContext.StepInfo.Text);
+        //[AfterStep]
+        //public void AfterStep()
+        //{
+        //    //Console.WriteLine(scenarioContext.StepContext.StepInfo.Text);
 
-            //tells whether given or when or then 
-            var stepType = scenarioContext.StepContext.StepInfo.StepDefinitionType.ToString();
-            if (scenarioContext.TestError == null)
-            {
-                scenario.CreateNode(new GherkinKeyword(stepType), scenarioContext.StepContext.StepInfo.Text);
-            }
-            else if (scenarioContext.TestError != null)
-            {
-                scenario.CreateNode(new GherkinKeyword(stepType), scenarioContext.StepContext.StepInfo.Text).Fail(scenarioContext.TestError.Message);
-            }
-        }
+        //    //tells whether given or when or then 
+        //    var stepType = scenarioContext.StepContext.StepInfo.StepDefinitionType.ToString();
+        //    if (scenarioContext.TestError == null)
+        //    {
+        //        scenario.CreateNode(new GherkinKeyword(stepType), scenarioContext.StepContext.StepInfo.Text);
+        //    }
+        //    else if (scenarioContext.TestError != null)
+        //    {
+        //        scenario.CreateNode(new GherkinKeyword(stepType), scenarioContext.StepContext.StepInfo.Text).Fail(scenarioContext.TestError.Message);
+        //    }
+        //}
 
        
-        [AfterScenario]
-        public void TearDown()
-        {
-            driver.Quit();
-        }
+        //[AfterScenario]
+        //public void TearDown()
+        //{
+        //    driver.Quit();
+        //}
 
     }
 }

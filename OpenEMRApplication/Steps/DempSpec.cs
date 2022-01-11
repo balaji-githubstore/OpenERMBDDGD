@@ -32,11 +32,7 @@ namespace OpenEMRApplication.Steps
         [When(@"I click on create new patient")]
         public void WhenIClickOnCreateNewPatient()
         {
-      //added comment   
-      //ss
-      //ssss
-      //demo122
-     //ss333
+      //123
         }
     }
 }

@@ -73,7 +73,7 @@ namespace OpenEMRApplication.Steps
             //make sure portal page is loaded
             _main.WaitForPresenceOfPatientElement();
             Assert.AreEqual(expectedTitle, _main.GetMainPageTitle());
-            AutomationHooks.scenario.Log(Status.Info, "completed title validation " + _main.GetMainPageTitle()); 
+            //AutomationHooks.scenario.Log(Status.Info, "completed title validation " + _main.GetMainPageTitle()); 
         }
 
         [Then(@"I should get error message as '(.*)'")]
