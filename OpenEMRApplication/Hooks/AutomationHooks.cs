@@ -34,8 +34,11 @@ namespace OpenEMRApplication.Hooks
         {
             if(browser.ToLower().Equals("ch"))
             {
+                ChromeOptions opt = new ChromeOptions();
+                opt.AddArgument("--header");
+
                 new DriverManager().SetUpDriver(new ChromeConfig());
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(opt);
                 _helper.WriteLine("Browser launched with Chrome");
             }
             else if(browser.ToLower().Equals("ff"))
